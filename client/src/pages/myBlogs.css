@@ -1,0 +1,26 @@
+.my_blogs{
+    margin-top: 70px;
+    width: 100vw;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 0.5fr));
+    gap: 40px;
+    overflow-x: hidden;
+}
+.noblogs{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+@media screen and (min-width: 350px) and ( max-width: 690px){
+    .my_blogs{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 350px){
+      .my_blogs{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+  }

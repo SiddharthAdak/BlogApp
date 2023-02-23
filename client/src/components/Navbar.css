@@ -1,0 +1,121 @@
+ .navbar{
+     background-color: white;
+     display: flex;
+     box-sizing: border-box;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px 20px;
+     position: fixed;
+     top: 0;
+     left: 50%;
+    transform: translateX(-50%);
+     width: 100vw;
+     z-index: 2;
+     box-sizing: border-box;
+     box-shadow: 0px 15px 10px -15px rgb(160, 157, 157);
+}
+.navbar img{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 20px;
+    display: inline;
+    cursor: pointer;
+}
+.nav-profile{
+    
+    width: 150px;
+    box-shadow: 0px 0px 5px 0px gray;
+    border-radius: 5px;
+    position: fixed;
+    opacity: 0;
+    transform:translateY(-40px);
+    visibility: hidden;
+    z-index: 1;
+    top: 70px;
+    right: 20px;
+    background-color: white ;
+    transition: all 0.2s ease;
+    
+}
+.open_profile.nav-profile{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+    transform:translateY(0%);
+}
+.nav-profile p{
+    padding: 10px 5px;
+    background-color: white ;
+    color: black;
+}
+.nav-profile p:hover{
+    cursor: pointer;
+    background-color: rgb(216, 216, 216);
+}
+.title{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+.nav-container{
+    
+    display: flex;
+    align-items: center;
+}
+.navbar_list{
+    display: flex;
+    justify-content: end;
+}
+.navbar_list li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    
+}
+.navbar_list a{
+    text-decoration: none;
+    color: gray;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+.ham{
+    display: none; 
+    flex-direction: column;
+    width: 22px;
+    align-items:flex-start;
+}
+.ham_bar{
+    width: 100%;
+    height: 3px;
+    background-color: gray;
+    border-radius: 5px;
+    margin: 2px 0px;
+    transition: all 0.3s ease;
+}
+.open_menu .ham_bar:nth-child(1){
+    transform: translate(0%,235%) rotate(225deg);
+}
+.open_menu .ham_bar:nth-child(2){
+    opacity: 0;
+    transform: rotate(225deg);
+}
+.open_menu .ham_bar:nth-child(3){
+    transform: translate(0%,-235%) rotate(315deg);
+    
+}
+@media screen and (max-width: 700px){
+    .navbar_list{
+        display: none;
+    }
+    .ham{
+        display: flex;
+        
+    }
+    .navbar img{
+        margin-right: 20px;
+    }
+}

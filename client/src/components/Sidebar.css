@@ -1,0 +1,37 @@
+.sidebar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: black;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.3s ease-out;
+    z-index: 1;
+}
+.sidebar_list{
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.sidebar_list li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+.sidebar_list a{
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+.sidebar_list a:nth-child(1){
+    padding-top: 25px;
+}
+@media screen and (min-width: 700px){
+    .sidebar{
+        display: none;
+    }
+}

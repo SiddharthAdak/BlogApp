@@ -1,0 +1,87 @@
+
+.login{
+    margin-top: 70px;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    min-height: 570px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/blob-scene-haikei\ \(1\).svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+}
+.login-container{
+    width: 400px;
+    margin-bottom: 20px;
+}
+.login-container h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    box-shadow: 0 0 10px 0 gray;
+    background-color: white;
+}
+.login-form h1{
+    margin-bottom: 20px;
+}
+.login-form input{
+    padding: 10px 5px;
+    width: 100%;
+    margin: 10px 0px;
+    border: none;
+    background-color: rgba(228, 228, 228, 0.452);
+    border-radius: 5px;
+}
+.login-form input:focus{
+    outline: none;
+}
+.login-form button{
+    margin-top: 20px;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    background-color: #0066ff;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.login-error{
+    font-size: 15px !important;
+    color: red !important;
+    margin-bottom: 0px !important;
+}
+.login-form p{
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: gray;
+}
+.login-form a{
+    color: #0066ff;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-aspect-ratio: 3/4) {
+    .login{
+        background-image: url("../../public/blob-scene-haikei\ \(4\).svg");
+    }
+    .login-form{
+        padding: 20px 20px;
+    }
+}
