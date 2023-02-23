@@ -22,8 +22,6 @@ function Sidebar() {
             <ul className = "sidebar_list">
                     <Navlist name = "Home" />
                     <Navlist name = "Write" />
-                    <Navlist name = "About" />
-                    <Navlist name = "Contact" />
                 </ul>
         </div>
     )
