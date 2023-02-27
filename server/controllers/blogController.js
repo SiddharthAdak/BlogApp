@@ -40,13 +40,16 @@ const deleteBlog = async(req, res) => {
 
 const updateBlog = async(req, res) => {
     const {id}= req.params;
-    const {title, story, image, category} = req.body;
+    const {title, story, image, category, userEmail} = req.body;
     const {email, name} = req.user;
     const editBlog = {title, story, image, category, email, author:name};
-    console.log(editBlog, id);
+    if(userEmail !== email){
+        return res.status(400).json({msg: "Unauthorised request"});
+    }
+    console.log(userEmail);
     try{
         response = await Blog.findByIdAndUpdate(id, editBlog, {useFindAndModify:true} );
-        console.log(response);
+        
         res.status(200).json({msg : "blog updated successfully"});
 
     }

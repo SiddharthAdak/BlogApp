@@ -35,7 +35,7 @@ export const deleteBlog = async(id, token) => {
 }
 
 export const updateBlog = async(id, data, token) => {
-    console.log(id);
+    console.log(data);
     try{
         return await axios.put(`${URL}/updateblog/${id}`,data, { headers: {"Authorization" : `Bearer ${token}`} });
     }

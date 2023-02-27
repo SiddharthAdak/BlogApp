@@ -12,7 +12,7 @@ import { useLocation } from 'react-router';
 
 function UpdatePost() {
     const location = useLocation();
-    
+    console.log(location.state.email);
     useEffect(()=>{
         let { category, image, story, title} = location.state;
         
@@ -89,7 +89,7 @@ function UpdatePost() {
     }
 
     const send2 = async(data) => {
-        let response = await updateBlog(location.state._id,{title:state.title, story:state.story, image: data, category:state.category}, user.token);
+        let response = await updateBlog(location.state._id,{title:state.title, story:state.story, image: data, category:state.category, userEmail: location.state.email}, user.token);
         if(response.status === 200){
             
             setError(null)

@@ -2,7 +2,7 @@ import React from 'react'
 import {DelIcon, UpdateIcon} from "./Svg";
 import {useSelector, useDispatch} from "react-redux";
 import { deleteBlog } from '../service/blogApi';
-import { addBlogs } from '../store/actions';
+import { addBlogs, removeBlog } from '../store/actions';
 import { deleteImage } from '../service/imageApi';
 import "./Card.css"
 import { Link, useNavigate} from "react-router-dom";
@@ -24,18 +24,24 @@ function Card({element}) {
     const handleDel = async(e) => {
         e.stopPropagation();
         e.preventDefault();
-        let response = await deleteBlog(element._id, user.token);
-        if(response.status === 200){
-            if(element.image.public_id !== "null"){
-                send2();
+        if (
+            window.confirm(
+              `Are you sure you want to delete the blog`
+            )
+          ) {
+            let response = await deleteBlog(element._id, user.token);
+          
+        
+            if(response.status === 200){
+                if(element.image.public_id !== "null"){
+                    send2();
+                }
+                
+                dispatch(removeBlog(element._id));
             }
-            let newArray = allBlogs.filter(function(el) {
-                return el._id !== element._id;
-            });
-            dispatch(addBlogs(newArray));
-        }
-        else{
-            console.log(response);
+            else{
+                console.log(response);
+            }
         }
     }
 

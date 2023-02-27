@@ -4,7 +4,13 @@ export const addBlogs = (data) => {
         payload: data
     }
 }
-
+export const removeBlog = (_id) => {
+    console.log(_id);
+    return {
+        type: "DELETE_BLOG",
+        payload: _id
+    }
+}
 export const addUser = (data) => {
     return{
         type: "SET_USER",
