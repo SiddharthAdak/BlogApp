@@ -46,7 +46,7 @@ function Navbar() {
         </header>
         <div id = "nav-profile" className = "nav-profile">
                     <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "myblogs" ><p>My Blogs</p></Link>
-                    
+                    <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "bookmarks" ><p>Bookmarks</p></Link>
                     
                     <p onClick = {logoutUser}>Logout</p>
                 </div>

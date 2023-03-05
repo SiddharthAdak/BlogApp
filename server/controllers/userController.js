@@ -13,7 +13,7 @@ const signUp = async (req, res) => {
         const token = createToken(user._id);
         res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge*1000, sameSite: "none", secure: true});
 
-        res.status(200).json({name, email,profileImage, token})
+        res.status(200).json({_id: user._id,name, email,profileImage, token})
     }
     catch(error){
         res.status(400).json({message: error.message});
@@ -28,7 +28,7 @@ const logIn = async (req,res) => {
         
         res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge*1000, sameSite: "none", secure: true});
         
-        res.status(200).json({name:user.name, email, profileImage:user.profileImage, token});
+        res.status(200).json({_id: user._id,name:user.name, email, profileImage:user.profileImage, token});
     }
     catch(error){
         res.status(400).json({message:error.message});
@@ -43,7 +43,7 @@ const checkUser = async(req,res) => {
     const {_id} = jwt.verify(token, process.env.SECRET);
     try{
         user = await User.findOne({_id});
-        res.status(200).json({name:user.name, email: user.email, profileImage:user.profileImage, token})
+        res.status(200).json({name:user.name, email: user.email, _id:user._id, profileImage:user.profileImage, token})
     }
     catch(error){
         res.status(400).json({message:error.message});

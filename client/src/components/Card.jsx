@@ -1,8 +1,8 @@
 import React from 'react'
-import {DelIcon, UpdateIcon} from "./Svg";
+import {DelIcon, UpdateIcon, BookmarkIcon, DelBookmarkIcon} from "../assets/Svg";
 import {useSelector, useDispatch} from "react-redux";
-import { deleteBlog } from '../service/blogApi';
-import { addBlogs, removeBlog } from '../store/actions';
+import { deleteBlog, addBookmark, removeBookmark } from '../service/blogApi';
+import { removeBlog, updateStoreBlog } from '../store/actions';
 import { deleteImage } from '../service/imageApi';
 import "./Card.css"
 import { Link, useNavigate} from "react-router-dom";
@@ -14,7 +14,7 @@ function Card({element}) {
 
     const user = useSelector(state => state.setUser);
     const dispatch = useDispatch();
-    const allBlogs = useSelector(state => state.setBlog);
+    
     const months = ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     let d = new Date(element.createdAt)
     let month = months[d.getMonth()];
@@ -29,9 +29,8 @@ function Card({element}) {
               `Are you sure you want to delete the blog`
             )
           ) {
-            let response = await deleteBlog(element._id, user.token);
-          
-        
+            let response = await deleteBlog(element.author_id, element._id, user.token);
+
             if(response.status === 200){
                 if(element.image.public_id !== "null"){
                     send2();
@@ -44,7 +43,7 @@ function Card({element}) {
             }
         }
     }
-
+    
     const send2 = async() => {
         let response = await deleteImage({id: element.image.public_id});
         console.log(response);
@@ -56,6 +55,33 @@ function Card({element}) {
         navigate("/Update", {state: element});
     }
 
+    const handleBookmark = async(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        let response = await addBookmark({_id:element._id}, user.token);
+        
+        if(response.status === 200){
+            console.log(response);
+            dispatch(updateStoreBlog(response.data))
+        }
+        else{
+            console.log(response);
+        }
+    }
+
+    const handleDelBookmark = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        let response = await removeBookmark({_id:element._id}, user.token);
+        
+        if(response.status === 200){
+            console.log(response);
+            dispatch(updateStoreBlog(response.data))
+        }
+        else{
+            console.log(response);
+        }
+    }
 
     return (
         <Link to = {"/"+element._id} className = "card" >
@@ -71,9 +97,13 @@ function Card({element}) {
                 <div className = "card-footer" >
                     <span className = "card-time ellipsis">{month+" "+date+", "+year}</span>
                     <div>
-                        {user.email === element.email && <UpdateIcon handleUpdate = {handleUpdate} />}
-                        {user.email === element.email && <DelIcon handleDel = {handleDel} />}
-                    
+                        {!(element.user_bookmarks?.includes(user._id)) ?
+                        <BookmarkIcon handleBookmark = {handleBookmark} /> 
+                        :
+                        <DelBookmarkIcon handleDelBookmark = {handleDelBookmark} />
+                        }
+                        {user._id === element.author_id && <UpdateIcon handleUpdate = {handleUpdate} />}
+                        {user._id === element.author_id && <DelIcon handleDel = {handleDel} />}
                     </div>
                 </div>
                 </div>

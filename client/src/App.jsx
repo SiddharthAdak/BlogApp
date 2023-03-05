@@ -15,6 +15,7 @@ import Signup from './pages/Signup';
 import { checkUser } from './service/userApi';
 import UpdatePost from './pages/UpdatePost';
 import MyBlogs from './pages/MyBlogs';
+import Bookmarks from './pages/Bookmarks';
 export const UserContext = createContext();
 function App() {
   const user = useSelector(state => state.setUser);
@@ -45,6 +46,7 @@ function App() {
     let response = await checkUser();
     if (response.status === 200) {
       dispatch(addUser(response.data));
+      
     }
     else{
       console.log(response)
@@ -74,6 +76,7 @@ function App() {
       <Route path = "/Signup" element = { !user ? <Signup /> : <Navigate to = "/" />} />
       <Route path = "/Update" element = { user ? <UpdatePost /> : <Navigate to = "/Login" />} />
       <Route path = "/myblogs" element = { user ? <MyBlogs /> : <Navigate to = "/Login" />} />
+      <Route path = "/bookmarks" element = { user ? <Bookmarks /> : <Navigate to = "/Login" />} />
     </Routes>
     </div>
   );

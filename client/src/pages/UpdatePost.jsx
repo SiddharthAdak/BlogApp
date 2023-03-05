@@ -2,20 +2,21 @@ import React from 'react';
 import { useState, useReducer, useEffect } from 'react';
 import "./Write.css";
 import { uploadImage } from '../service/imageApi';
-import { getBlogs, updateBlog } from '../service/blogApi';
+import { updateBlog } from '../service/blogApi';
+import { deleteImage } from '../service/imageApi';
 import Category from '../components/Category';
 import { initialState, formReducer } from './formReducer/formReducer';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { useSelector, useDispatch } from "react-redux";
-import { addBlogs } from '../store/actions';
+import { updateStoreBlog } from '../store/actions';
 import { useLocation } from 'react-router';
 
 function UpdatePost() {
+    const [currentImg, setCurrentImg] = useState("null");
     const location = useLocation();
-    console.log(location.state.email);
     useEffect(()=>{
         let { category, image, story, title} = location.state;
-        
+        setCurrentImg(image.public_id);
         dispatch({
             type: "SET_TO_CURRENT",
             payload: {
@@ -30,7 +31,7 @@ function UpdatePost() {
     },[])
 
     const user = useSelector(state => state.setUser);
-    const allBlogs = useSelector(state => state.setBlog);
+    
     const reduxDispatch = useDispatch();
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -89,31 +90,24 @@ function UpdatePost() {
     }
 
     const send2 = async(data) => {
-        let response = await updateBlog(location.state._id,{title:state.title, story:state.story, image: data, category:state.category, userEmail: location.state.email}, user.token);
+        let response = await updateBlog(location.state._id,{title:state.title, story:state.story, image: data, category:state.category, author_id: location.state.author_id}, user.token);
         if(response.status === 200){
-            
             setError(null)
             setIsLoading(false);
             setSuccess("Blog updated successfully")
+            reduxDispatch(updateStoreBlog(response.data));
+            console.log(response.data);
             setTimeout(()=>{
                 setSuccess(null);
             },3000);
-            
-            if (location.state.image.public_id !== "null" && data.public_id!==location.state.image.public_id) {
-                let delresponse = await deleteImage({id: location.state.image.public_id});
-                console.log(delresponse);
+            if(currentImg !== "null" && currentImg !== response.data.image.public_id){
+                let response = await deleteImage({id: currentImg});
+                console.log(response, " hemlo");
             }
-            let getResponse = await getBlogs(user.token);
-            if (getResponse.status === 200) {
-                
-                reduxDispatch(addBlogs(getResponse.data))
-            }
-            else{
-            console.log(response)
-            }
+            setCurrentImg(response.data.image.public_id);
         }
         else{
-            console.log(response.response.data.message);
+            console.log(response);
             setIsLoading(false);
             setError(response.response.data.message)
         }

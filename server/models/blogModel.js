@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
@@ -22,9 +23,14 @@ const blogSchema = new Schema({
             type: String,
             required: true 
         },
-        email:{
+        author_id:{
             type: String,
             required: true
+        },
+        user_bookmarks:{
+            type: [String],
+            default: []
+            
         }
     },
     { timestamps: true }

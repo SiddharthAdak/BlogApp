@@ -96,3 +96,11 @@ h3{
 #card_update:hover path{
     stroke: white;
 }
+
+#bookmark path{
+    stroke: #ffbe3b;
+    stroke-width: 0.3;
+}
+#bookmark:hover{
+    scale: 1.1;
+}

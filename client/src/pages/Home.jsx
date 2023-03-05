@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 function Home() {
     
     const allBlogs = useSelector(state => state.setBlog);
+    
     const [categoryBlogs, setCategoryBlogs] = useState([]);
     const [category, setCategory] = useState("All")
     const categoryValue = ["All","Travel", "Entertainment/Cinema", "Sports", "Business/Money", "Tech", "Lifestyle", "Fashion" ,"Other"];
@@ -23,7 +24,7 @@ function Home() {
             setCategoryBlogs(newArray);
         }
     }, [category,allBlogs])
-
+    
     const handleCategory = (e) =>{
         !e.target.value?setCategory(e.target.innerHTML):setCategory(e.target.value);
     }
@@ -40,7 +41,7 @@ function Home() {
                 
             
             <div className = "blog-container">
-                {categoryBlogs.length?<div className = "blog-container-cards">
+                {(categoryBlogs.length)?<div className = "blog-container-cards">
                     {categoryBlogs.map((element)=>{
                         return(<Card key = {element._id} element = {element} />)
                     })}
