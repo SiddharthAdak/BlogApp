@@ -1,12 +1,13 @@
 import React from 'react';
 import "./Navbar.css";
-import { useContext } from 'react';
-import { UserContext } from '../App';
+
 function Hamburger() {
-    const { state, setState} = useContext(UserContext);
+    
     function handleClick(){
-        setState(!state);
+        
         let ham = document.getElementById("menu");
+        let sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("open_sidebar");
         ham.classList.toggle("open_menu");
     }
     return (
