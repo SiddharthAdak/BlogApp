@@ -10,7 +10,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { useSelector, useDispatch } from "react-redux";
 import { updateStoreBlog } from '../store/actions';
 import { useLocation } from 'react-router';
-
+import { AddImageIcon } from '../assets/Svg';
 function UpdatePost() {
     const [currentImg, setCurrentImg] = useState("null");
     const location = useLocation();
@@ -147,7 +147,7 @@ function UpdatePost() {
                 {state.image && <img src = {state.image.url} /> }  
 
                 {(!state.previewImage && !state.image) ? <span className = "image_upload"><label  htmlFor="img" >
-                <span className="material-symbols-outlined image_uploader">add_photo_alternate</span> Add Image</label>
+                <AddImageIcon /> Add Image</label>
                 OR
                 <input onChange = {handleChange} name = "imageUrl" value = {state.imageUrl} className = "imgUrl" placeholder = "Enter image url" />
                 <button onClick = {isImgUrl}>Add Url</button>
