@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { signup } from '../service/userApi';
 import { addUser } from '../store/actions';
 import { useDispatch } from "react-redux";
-
+import { Link } from 'react-router-dom';
 function Signup() {
     const dispatch = useDispatch();
     const [signupDetails, setSignupDetails] = useState({
@@ -51,7 +51,7 @@ function Signup() {
 
                 {error && <p className = "login-error">Error! {error}</p>}
                 <button disabled = {isLoading} onClick = {signupUser}>Sign Up</button>
-                <p>Already have an account? <a href = "/Login">Login</a></p>
+                <p>Already have an account? <Link to = "/Login">Login</Link></p>
             </form>
             </div>
         </div>

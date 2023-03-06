@@ -3,6 +3,7 @@ import "./Login.css"
 import {login} from "../service/userApi";
 import { addUser } from '../store/actions';
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 function Login() {
     const dispatch = useDispatch();
     const [loginDetails, setLoginDetails] = useState({
@@ -44,7 +45,7 @@ function Login() {
                 <input onChange = {handleInput} type = "password" name = "password" value = {loginDetails.password} placeholder = "Password" />
                 {error && <p className = "login-error">Error! {error}</p>}
                 <button disabled = {isLoading} onClick = {loginUser}>Login</button>
-                <p>Don't have an account? <a href = "/Signup">Sign Up</a></p>
+                <p>Don't have an account? <Link to = "/Signup">Sign Up</Link></p>
                 </form>
             </div>
         </div>

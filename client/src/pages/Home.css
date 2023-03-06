@@ -2,14 +2,15 @@
     margin-top: 65px;
 }
 .home-container{
-  
+    
     width: 100vw;
 }
 .home-container-img{
     /* width: 100vw; */
     object-fit: cover;
     width: 100vw;
-    min-height: 30vh;
+    
+    
 }
 .blog-container{
     width: 100vw;
@@ -81,6 +82,9 @@
   @media screen and (max-width: 350px){
       .sidebar-container{
           width: 200px;
+      }
+      .home-container-img{
+          min-height: 30vh;
       }
       .blog-container-cards{
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

@@ -35,9 +35,11 @@ function App() {
     let response = await getBlogs(token);
     if (response.status === 200) {
       dispatch(addBlogs(response.data))
+      setIsLoading(false);
     }
     else{
       console.log(response)
+      setIsLoading(false);
     }
   }
 
@@ -45,7 +47,7 @@ function App() {
     let response = await checkUser();
     if (response.status === 200) {
       dispatch(addUser(response.data));
-      setIsLoading(false);
+      
     }
     else{
       console.log(response)
@@ -57,8 +59,8 @@ function App() {
     <div className="App">
       <Navbar />
       <Sidebar />
-    <Suspense fallback = {<h1>loading</h1>}>
-    {!isLoading &&
+    <Suspense fallback = {<h1 className = "suspense_loading">loading...</h1>}>
+    {!isLoading ?
       <Routes>
         <Route path = "/" element = { user ? <Home /> : <Navigate to = "/Login" />} />
         <Route path = "/Write" element = { (user ? <Write /> : (<Navigate to = "/Login" />))} />
@@ -68,7 +70,7 @@ function App() {
         <Route path = "/Update" element = { user ? <UpdatePost /> : <Navigate to = "/Login" />} />
         <Route path = "/myblogs" element = { user ? <MyBlogs /> : <Navigate to = "/Login" />} />
         <Route path = "/bookmarks" element = { user ? <Bookmarks /> : <Navigate to = "/Login" />} />
-      </Routes>}
+      </Routes>:<h1 className = "suspense_loading">loading...</h1>}
     </Suspense>
     </div>
   );

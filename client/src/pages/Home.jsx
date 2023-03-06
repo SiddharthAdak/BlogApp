@@ -21,7 +21,7 @@ function Home() {
     return (
         <div className = "home">
             <div className = "home-container">
-                <img className = "home-container-img" src = "../blog-header-img.png"/>
+                <img className = "home-container-img" src = "../blog-header-img.png" />
             </div>
 
                 <div className = "category-container">
@@ -30,7 +30,7 @@ function Home() {
                 
             
             <div className = "blog-container">
-                {allBlogs.filter((el) => el.category === category ).length?<div className = "blog-container-cards">
+                {category === "All" || allBlogs.filter((el) => el.category === category ).length?<div className = "blog-container-cards">
                     {allBlogs.map((element)=>{
                         if(category === "All" || category === element.category){
                             return(<Card key = {element._id} element = {element} />)
