@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Category({handleCategory, category}) {
-    const categoryValue = ["All","Travel", "Entertainment/Cinema", "Sports", "Business/Money", "Tech", "Lifestyle", "Fashion" ,"Other"];
+    const categoryValue = ["All","Travel", "Entertainment | Cinema", "Sports", "Business | Money", "Tech", "Lifestyle", "Fashion" ,"Other"];
     const toggleOptions = () =>{
         let element = document.getElementById("options");
         element.classList.toggle("active");

@@ -11,7 +11,7 @@ function Home() {
     
     const allBlogs = useSelector(state => state.setBlog);
     const [category, setCategory] = useState("All")
-    const categoryValue = ["All","Travel", "Entertainment/Cinema", "Sports", "Business/Money", "Tech", "Lifestyle", "Fashion" ,"Other"];
+    const categoryValue = ["All","Travel", "Entertainment | Cinema", "Sports", "Business | Money", "Tech", "Lifestyle", "Fashion" ,"Other"];
     
     
     
@@ -30,13 +30,15 @@ function Home() {
                 
             
             <div className = "blog-container">
-                {category === "All" || allBlogs.filter((el) => el.category === category ).length?<div className = "blog-container-cards">
+                {((category === "All" && allBlogs) || allBlogs.filter((el) => el.category === category )).length?<div className = "blog-container-cards">
                     {allBlogs.map((element)=>{
                         if(category === "All" || category === element.category){
                             return(<Card key = {element._id} element = {element} />)
                         }
                     })}
-                </div>:  <h1 className = "blog-container-cards">No Blogs in this Category</h1> }
+                </div>
+                :  
+                <h1 className = "blog-container-cards">No Blogs in this Category</h1> }
                 <div className = "sidebar-category">
                 <div className = "sidebar-container">
                     <p> Selected Category: {category}</p>

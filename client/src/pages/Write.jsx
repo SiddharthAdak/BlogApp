@@ -107,16 +107,17 @@ function Write() {
     return (
         <div className="write">
             <form id="input_container">
-            <Category handleCategory = {handleChange} category = {state.category}/>
-                    <TextareaAutosize
-                        onChange = {handleChange}
-                        value = {state.title}
-                        name = "title"
-                        aria-label="empty textarea"
-                        placeholder="Title"
-                        style={{ width: "100%" }}
-                        className = "title_input"
-                    />
+                <Category handleCategory = {handleChange} category = {state.category}/>
+                <TextareaAutosize
+                    aria-label="empty textarea"
+                    placeholder="Title..."
+                    style={{  resize: "none", fontSize: "40px"}}
+                    minRows={1}
+                    className = "title_input"
+                    name = "title"
+                    onChange = {handleChange}
+                    value = {state.title}
+                />
 
                 {state.previewImage && <img src = {state.previewImage} />}
                 {state.image && <img src = {state.image.url} /> }  
@@ -139,16 +140,16 @@ function Write() {
                     type="file" id="img" name="img" accept="image/*"
                 />
 
-                    <TextareaAutosize
-                        aria-label="empty textarea"
-                        placeholder="Tell your story..."
-                        style={{  resize: "none"}}
-                        minRows={3}
-                        className = "story_input"
-                        name = "story"
-                        onChange = {handleChange}
-                        value = {state.story}
-                    />
+                <TextareaAutosize
+                    aria-label="empty textarea"
+                    placeholder="Tell your story..."
+                    style={{  resize: "none"}}
+                    minRows={3}
+                    className = "story_input"
+                    name = "story"
+                    onChange = {handleChange}
+                    value = {state.story}
+                />
 
                 <div><button disabled = {isLoading} onClick = {handleSubmit}>{(!isLoading)? "Publish":"Publishing..."}</button></div>
                 {error&&<div className = "error">{"Error! "+error}</div>}

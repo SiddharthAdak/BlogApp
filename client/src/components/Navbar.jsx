@@ -27,21 +27,20 @@ function Navbar() {
         <div>
         <header className = "navbar">
             <div className = "title">
-                <h1>Navbar</h1>
+                <h2>Blog</h2>
             </div>
                 
-            <div className = "nav-container">
-                {user && <ul className = "navbar_list" >
+            {user && <div className = "nav-container">
+                <ul className = "navbar_list" >
                     <Navlist name = "Home" />
                     <Navlist name = "Write" />
                     
-                </ul>}
+                </ul>
                 <div>
-                <img onClick = {toggleOptions} src = "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg"/>
-                
+                    <img onClick = {toggleOptions} src = "profile.jpg"/>
                 </div>
             <Hamburger />
-            </div>
+            </div>}
            
         </header>
         <div id = "nav-profile" className = "nav-profile">

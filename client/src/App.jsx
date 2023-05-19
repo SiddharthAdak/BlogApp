@@ -45,7 +45,7 @@ function App() {
 
   const findUser = async() =>{
     let response = await checkUser();
-    if (response.status === 200) {
+    if (response?.status === 200) {
       dispatch(addUser(response.data));
       
     }

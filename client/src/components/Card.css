@@ -1,6 +1,6 @@
 .card{
     padding: 10px 10px;
-    height: 400px;
+    height: 410px;
     box-shadow: 0 0 7px 0px rgb(207, 207, 207);
     border-radius: 10px;
     transition: all 0.2s ease-in-out;
@@ -39,12 +39,12 @@ h3{
     color: rgb(68, 68, 68) !important;
     font-size: 15px !important;
     overflow: hidden;
-  display: -webkit-box;
-  word-break: break-all;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  white-space: pre-wrap;
-  height: 39px;
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: pre-wrap;
+    height: 45px;
 }
 .card-footer{
     display: flex;
@@ -68,8 +68,6 @@ h3{
     fill: white;
     transition: fill 0.2s ease, transform 0.1s ease;
 }
-
-
 
 #card_del:hover{
     fill: red;

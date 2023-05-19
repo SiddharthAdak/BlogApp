@@ -87,7 +87,7 @@ function Card({element}) {
         <Link to = {"/"+element._id} className = "card" >
         
             <div>
-                <img className = "card-img" src = {element.image.url}  />
+                <img className = "card-img" src = {element.image.url}  loading = "lazy"  />
                 <div className = "card-text">
                 <p className = "card-category ellipsis">{element.category}</p>
                 <h3 className = "card-title ellipsis">{element.title}</h3>

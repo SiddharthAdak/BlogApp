@@ -30,7 +30,7 @@
     flex-direction: column;
     box-shadow: 0 0 10px 0 gray;
     background-color: white;
-    margin:  10 auto;
+    cursor: pointer;
     width: 300px;
     height: fit-content;
     position: sticky;
@@ -38,7 +38,7 @@
     
 }
 .sidebar-container p{
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     width: 100%;
     border-bottom: 1px solid rgb(230, 228, 228);
     font-size: 14px;
