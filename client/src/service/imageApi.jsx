@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8000/api/images";
+const URL = "https://blog-app-server-mvus.onrender.com/api/images";
 
 
 export const uploadImage = async(data) =>{

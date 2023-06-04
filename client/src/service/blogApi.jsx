@@ -1,7 +1,6 @@
 import axios from "axios";
-import store from "../store/store";
 
-const URL = "http://localhost:8000/api/blogs";
+const URL = "https://blog-app-server-mvus.onrender.com/api/blogs";
 
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8000/api/users";
+const URL = "https://blog-app-server-mvus.onrender.com/api/users";
 
 export const signup = async(data) => {
     try{
