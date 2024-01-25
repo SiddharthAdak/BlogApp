@@ -58,6 +58,10 @@ function Card({element}) {
     const handleBookmark = async(e) => {
         e.stopPropagation();
         e.preventDefault();
+        if(!user){
+            navigate("/Login")
+            return;
+        }
         let response = await addBookmark({_id:element._id}, user.token);
         
         if(response.status === 200){
@@ -97,13 +101,15 @@ function Card({element}) {
                 <div className = "card-footer" >
                     <span className = "card-time ellipsis">{month+" "+date+", "+year}</span>
                     <div>
-                        {!(element.user_bookmarks?.includes(user._id)) ?
+                        
+                        {(!user || !(element.user_bookmarks?.includes(user._id))) ?
                         <BookmarkIcon handleBookmark = {handleBookmark} /> 
                         :
                         <DelBookmarkIcon handleDelBookmark = {handleDelBookmark} />
                         }
-                        {user._id === element.author_id && <UpdateIcon handleUpdate = {handleUpdate} />}
-                        {user._id === element.author_id && <DelIcon handleDel = {handleDel} />}
+                        
+                        {(user && user._id === element.author_id) && <UpdateIcon handleUpdate = {handleUpdate} />}
+                        {user && user._id === element.author_id && <DelIcon handleDel = {handleDel} />}
                     </div>
                 </div>
                 </div>

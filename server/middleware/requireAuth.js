@@ -2,6 +2,10 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel")
 const requireAuth = async (req, res, next) => {
     // verify authentication
+    const url = req.path;
+    if(url == "/getblogs"){
+        return next();
+    }
     const { authorization } = req.headers;
 
     if (!authorization) {

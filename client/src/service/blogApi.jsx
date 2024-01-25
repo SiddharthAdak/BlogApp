@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const URL = "https://blog-app-server-mvus.onrender.com/api/blogs";
+const BASE_URL = import.meta.env.VITE_BASE_URL
+const URL = BASE_URL + "api/blogs";
 
 
 
@@ -14,10 +14,10 @@ export const uploadBlog = async(data, token) => {
     }
 }
 
-export const getBlogs = async(token) => {
+export const getBlogs = async() => {
     
     try{
-        return await axios.get(`${URL}/getblogs`, { headers: {"Authorization" : `Bearer ${token}`} });
+        return await axios.get(`${URL}/getblogs`);
     }
     catch(error){
         return error;

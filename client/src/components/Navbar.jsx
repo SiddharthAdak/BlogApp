@@ -30,7 +30,7 @@ function Navbar() {
                 <h2>Blog</h2>
             </div>
                 
-            {user && <div className = "nav-container">
+            {<div className = "nav-container">
                 <ul className = "navbar_list" >
                     <Navlist name = "Home" />
                     <Navlist name = "Write" />
@@ -43,12 +43,18 @@ function Navbar() {
             </div>}
            
         </header>
-        <div id = "nav-profile" className = "nav-profile">
-                    <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "myblogs" ><p>My Blogs</p></Link>
+        {<div id = "nav-profile" className = "nav-profile">
+                    {(user) ? <><Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "myblogs" ><p>My Blogs</p></Link>
                     <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "bookmarks" ><p>Bookmarks</p></Link>
                     
-                    <p onClick = {logoutUser}>Logout</p>
-                </div>
+                    <p onClick = {logoutUser}>Logout</p></>
+                    :
+                    <>
+                        <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "/Login" ><p>Login</p></Link>
+                        <Link onClick = {toggleOptions} style = {{textDecoration:"none"}} to = "/Signup" ><p>Signup</p></Link>
+                    </>
+                    }
+                </div>}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL = "https://blog-app-server-mvus.onrender.com/api/images";
+const BASE_URL = import.meta.env.VITE_BASE_URL
+const URL = BASE_URL + "api/images";
 
 
 export const uploadImage = async(data) =>{

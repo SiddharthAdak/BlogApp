@@ -3,6 +3,8 @@ import { signup } from '../service/userApi';
 import { addUser } from '../store/actions';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import { LoadingSvg } from '../assets/Svg';
+import "./Login.css"
 function Signup() {
     const dispatch = useDispatch();
     const [signupDetails, setSignupDetails] = useState({
@@ -50,8 +52,12 @@ function Signup() {
                 <input onChange = {handleInput} type = "password" name = "confirm_password" value = {signupDetails.confirm_password} placeholder = "Confirm Password" />
 
                 {error && <p className = "login-error">Error! {error}</p>}
-                <button disabled = {isLoading} onClick = {signupUser}>Sign Up</button>
-                <p>Already have an account? <Link to = "/Login">Login</Link></p>
+                {(!isLoading) ? <button onClick = {signupUser}>Sign Up</button>:
+                    <div className='spinner-container'>
+                        <LoadingSvg className=' animate-spin' />
+                    </div>
+                }
+                {(!isLoading) && <p>Already have an account? <Link to = "/Login">Login</Link></p>}
             </form>
             </div>
         </div>

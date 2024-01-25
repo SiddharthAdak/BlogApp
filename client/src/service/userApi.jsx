@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL = "https://blog-app-server-mvus.onrender.com/api/users";
+const BASE_URL = import.meta.env.VITE_BASE_URL
+const URL = BASE_URL + "api/users";
 
 export const signup = async(data) => {
     try{

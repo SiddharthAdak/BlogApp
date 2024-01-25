@@ -69,6 +69,26 @@
 .login-form a{
     color: #0066ff;
 }
+.spinner-container{
+    padding: 8px 5px;
+    background-color: rgb(229 231 235);
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 16px;
+}
+.animate-spin {
+    
+    display: block;
+    animation: spin 1s linear infinite;
+    width: 1.5rem;
+    margin: auto;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 
 

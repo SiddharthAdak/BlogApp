@@ -4,6 +4,7 @@ import {login} from "../service/userApi";
 import { addUser } from '../store/actions';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import { LoadingSvg } from '../assets/Svg';
 function Login() {
     const dispatch = useDispatch();
     const [loginDetails, setLoginDetails] = useState({
@@ -44,8 +45,14 @@ function Login() {
 
                 <input onChange = {handleInput} type = "password" name = "password" value = {loginDetails.password} placeholder = "Password" />
                 {error && <p className = "login-error">Error! {error}</p>}
-                <button disabled = {isLoading} onClick = {loginUser}>Login</button>
-                <p>Don't have an account? <Link to = "/Signup">Sign Up</Link></p>
+                {(!isLoading) ? <button onClick = {loginUser}>Login</button>:
+                
+                    <div className='spinner-container'>
+                        <LoadingSvg className=' animate-spin' />
+                    </div>
+                
+                }
+                {(!isLoading) && <p>Don't have an account? <Link to = "/Signup">Sign Up</Link></p>}
                 </form>
             </div>
         </div>

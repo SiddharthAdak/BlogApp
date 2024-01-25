@@ -26,11 +26,11 @@ function App() {
     findUser();
   }, [])
 
-  useEffect(() => {
-    if(user){
-      getAllBlogs(user.token);
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if(user){
+      
+  //   }
+  // }, [user])
   const getAllBlogs = async(token) =>{
     let response = await getBlogs(token);
     if (response.status === 200) {
@@ -47,11 +47,11 @@ function App() {
     let response = await checkUser();
     if (response?.status === 200) {
       dispatch(addUser(response.data));
-      
+      getAllBlogs();
     }
     else{
       console.log(response)
-      setIsLoading(false);
+      getAllBlogs();
     }
   }
 
@@ -62,9 +62,9 @@ function App() {
     <Suspense fallback = {<h1 className = "suspense_loading">loading...</h1>}>
     {!isLoading ?
       <Routes>
-        <Route path = "/" element = { user ? <Home /> : <Navigate to = "/Login" />} />
+        <Route path = "/" element = {<Home />} />
         <Route path = "/Write" element = { (user ? <Write /> : (<Navigate to = "/Login" />))} />
-        <Route path = "/:_id" element = { user ? <Post /> : <Navigate to = "/Login" />} />
+        <Route path = "/:_id" element = { <Post /> } />
         <Route path = "/Login" element = { !user ? <Login /> : <Navigate to = "/" />} />
         <Route path = "/Signup" element = { !user ? <Signup /> : <Navigate to = "/" />} />
         <Route path = "/Update" element = { user ? <UpdatePost /> : <Navigate to = "/Login" />} />
